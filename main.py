@@ -5,24 +5,13 @@ from nextcord.ext import commands
 from flask import Flask
 from threading import Thread
 
+from server import server_on
+
 bot = commands.Bot(
     command_prefix='!',
     intents=nextcord.Intents.all(),
     help_command=None
 )
-
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "! Bot Ready !"
-
-def run():
-  app.run(host='0.0.0.0',port=8080)
-
-def server_on():
-    t = Thread(target=run)
-    t.start()
 
 class GenView(nextcord.ui.View):
     def __init__(self):
