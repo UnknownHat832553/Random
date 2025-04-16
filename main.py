@@ -45,7 +45,7 @@ class GenView(nextcord.ui.View):
                     if response.status == 200:
                         data = await response.json()
                         image_url = data['url'] if 'url' in data else data.get('urls', {}).get('regular', '❌ ไม่พบรูปภาพ')
-                        await msg.edit(content=f'{tag}: {image_url}')
+                        await msg.edit(content=f'{tag}: [ลิ้งรูป]({image_url})')
                     else:
                         await msg.edit(content='❌ โหลดรูปภาพไม่สำเร็จ')
         except Exception as e:
@@ -58,7 +58,7 @@ class GenView(nextcord.ui.View):
                 async with session.get('https://foodish-api.com/api/') as response:
                     data = await response.json()
                     food_url = data['image']
-                    await msg.edit(content=f'รูปอาหาร:\n{food_url}')
+                    await msg.edit(content=f'รูปอาหาร:\n[ลิ้งรูป]({food_url})')
         except Exception as e:
             await msg.edit(content=f'เกิดข้อผิดพลาด: {str(e)}')
 
